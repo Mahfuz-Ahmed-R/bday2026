@@ -29,17 +29,42 @@ export const LoveLetterScene: React.FC<LoveLetterSceneProps> = ({ onBack }) => {
           animate={{ opacity: 1, x: 0, rotate: -2 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           whileHover={{ rotate: 0, scale: 1.02 }}
-          className="relative w-64 sm:w-80 lg:w-92 drop-shadow-[0_16px_35px_rgba(50,30,90,0.3)] select-none shrink-0"
+          className="relative w-64 sm:w-80 lg:w-88 drop-shadow-[0_18px_38px_rgba(50,30,90,0.28)] select-none shrink-0"
         >
-          <img
-            src={birthdayConfig.photos.letterFramedPhoto}
-            alt="Framed memory with ribbon"
-            className="w-full h-auto object-contain pointer-events-none"
-            onError={(e) => {
-              // fallback to raw photo
-              e.currentTarget.src = birthdayConfig.photos.letterPhotoOnly;
-            }}
-          />
+          {/* Top Decorative Purple Ribbon / Bow */}
+          <div className="absolute -top-4 sm:-top-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-none drop-shadow-sm">
+            <svg viewBox="0 0 70 34" className="w-14 sm:w-18 h-auto text-[#8C76B8]">
+              {/* Bow Left loop */}
+              <ellipse cx="22" cy="14" rx="14" ry="9" fill="currentColor" opacity="0.95" />
+              {/* Bow Right loop */}
+              <ellipse cx="48" cy="14" rx="14" ry="9" fill="currentColor" opacity="0.95" />
+              {/* Inner loop highlights */}
+              <ellipse cx="22" cy="14" rx="7" ry="4" fill="#6047A8" opacity="0.5" />
+              <ellipse cx="48" cy="14" rx="7" ry="4" fill="#6047A8" opacity="0.5" />
+              {/* Knot center */}
+              <circle cx="35" cy="14" r="5.5" fill="#715AC3" />
+              {/* Tails */}
+              <path d="M31 18 Q25 28 18 31" stroke="#715AC3" strokeWidth="3" fill="none" strokeLinecap="round" />
+              <path d="M39 18 Q45 28 52 31" stroke="#715AC3" strokeWidth="3" fill="none" strokeLinecap="round" />
+            </svg>
+          </div>
+
+          {/* Polaroid / Scrapbook Card Container */}
+          <div className="relative bg-[#FAF5DE] rounded-[24px] p-3 sm:p-4 pb-5 sm:pb-6 border-[3.5px] border-[#7C66B9] shadow-md flex flex-col items-center">
+            {/* Photo Container */}
+            <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden shadow-inner border border-black/10 bg-[#E8DCF5]">
+              <img
+                src={birthdayConfig.photos.letterPhotoOnly}
+                alt="Framed couple memory"
+                className="w-full h-full object-cover object-center pointer-events-none transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+
+            {/* Handwritten Polaroid Caption */}
+            <p className="font-handwritten text-center text-lg sm:text-xl text-[#98263A] mt-2.5 sm:mt-3 font-bold tracking-wide">
+              with you, always ♥
+            </p>
+          </div>
         </motion.div>
 
         {/* RIGHT SIDE: Scalloped Postage-Stamp Letter Card */}
@@ -62,12 +87,18 @@ export const LoveLetterScene: React.FC<LoveLetterSceneProps> = ({ onBack }) => {
             </h2>
 
             {/* Paragraphs */}
-            <div className="flex flex-col gap-4 font-serif-vintage text-base sm:text-lg lg:text-xl text-[#98263A] leading-relaxed text-center font-medium">
-              {birthdayConfig.letterMessage.paragraphs.map((p, idx) => (
-                <p key={idx}>
-                  {p}
-                </p>
-              ))}
+            <div className="flex flex-col gap-3.5 sm:gap-4 font-serif-vintage text-base sm:text-lg lg:text-xl text-[#98263A] leading-relaxed text-center font-medium">
+              {birthdayConfig.letterMessage.paragraphs.map((p, idx) => {
+                const isCallout = idx === birthdayConfig.letterMessage.paragraphs.length - 1;
+                return (
+                  <p 
+                    key={idx}
+                    className={isCallout ? "font-handwritten text-2xl sm:text-3xl lg:text-4xl text-[#715AC3] font-bold mt-1 sm:mt-2 tracking-wide" : ""}
+                  >
+                    {p}
+                  </p>
+                );
+              })}
             </div>
 
             {/* Bottom cute heart stamps */}

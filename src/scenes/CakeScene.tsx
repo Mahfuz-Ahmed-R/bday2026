@@ -124,19 +124,37 @@ export const CakeScene: React.FC<CakeSceneProps> = ({ onCandleBlown }) => {
             </div>
           </div>
 
-          {/* RIGHT SIDE: Cool Cat wearing yellow sunglasses and striped party hat */}
+          {/* RIGHT SIDE: Cute photo in place of the cat */}
           <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 25, rotate: 8 }}
+            animate={{ opacity: 1, x: 0, rotate: 5 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="absolute -right-4 sm:-right-8 lg:-right-10 bottom-0 pointer-events-none select-none z-20"
+            className="absolute -right-3 sm:-right-6 lg:-right-8 -bottom-4 sm:-bottom-6 select-none z-20"
           >
-            <div className="w-36 sm:w-48 lg:w-56 drop-shadow-[0_10px_20px_rgba(60,35,100,0.25)]">
-              <img
-                src={birthdayConfig.stickers.catSunglasses}
-                alt="Cool sunglasses cat"
-                className="w-full h-auto object-contain"
-              />
+            {/* Polaroid Frame with subtle shadow and border */}
+            <div className="relative w-36 sm:w-46 lg:w-52 p-2 sm:p-2.5 pb-4 sm:pb-5 bg-white rounded-2xl shadow-[0_14px_32px_rgba(50,30,85,0.28)] border-2 border-white/90 drop-shadow-md">
+              {/* Mini Party Hat on top corner */}
+              <div className="absolute -top-5 sm:-top-7 -left-3 sm:-left-4 w-11 sm:w-14 pointer-events-none drop-shadow-sm -rotate-12 z-10">
+                <img
+                  src={birthdayConfig.stickers.partyHatYellow || '/assets/party-hat-yellow.png'}
+                  alt="Party hat"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+
+              {/* Photo */}
+              <div className="aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#FAF5DE] shadow-inner">
+                <img
+                  src={birthdayConfig.photos.cakePhoto}
+                  alt="Birthday boy"
+                  className="w-full h-full object-cover object-[center_18%] pointer-events-none"
+                />
+              </div>
+
+              {/* Cute Handwritten Caption */}
+              <p className="font-handwritten text-center text-xs sm:text-sm text-[#98263A] font-bold mt-1.5 sm:mt-2 tracking-wide">
+                your baby ✨
+              </p>
             </div>
           </motion.div>
 

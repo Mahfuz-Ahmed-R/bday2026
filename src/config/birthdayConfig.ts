@@ -47,6 +47,7 @@ export interface BirthdayConfig {
     giftOnePhoto2: string;
     letterFramedPhoto: string;
     letterPhotoOnly: string;
+    cakePhoto: string;
     museum: string[];
   };
   stickers: {
@@ -107,9 +108,10 @@ export const birthdayConfig: BirthdayConfig = {
   letterMessage: {
     heading: "Happy birthday to my favourite person! ❤️",
     paragraphs: [
-      "I hope this year brings you everything you've been wishing for and so much more. Thank you for making my days happier, my bad days easier, and my life a little more beautiful just by being in it. 🥹💖",
+      "I know last year was very hectic and traumatic for you, and I'm sorry for that. I really want to make you happy. Also, this year didn't change much, but I will try to make it more special than ever.",
       "I'm so lucky to have you, and I can't wait to make a million more memories with you. Here's to you, your dreams, and all the happiness you deserve.",
-      "Happy birthday, my love. I love you more than you know. 🫶🏻🎂❤️"
+      "Happy birthday, my love. I love you more than you know.",
+      "My Rupuuuuuuu babyyyyy!"
     ],
     signOff: "Forever & always,"
   },
@@ -127,18 +129,18 @@ export const birthdayConfig: BirthdayConfig = {
   photos: {
     heroCouple: "/custom-photos/unlock-photo.jpg",
     heroPhotoOnly: "/custom-photos/unlock-photo.jpg",
-    birthdayCouple: "/custom-photos/birthday-reveal-photo.png",
+    birthdayCouple: "/custom-photos/birthday-reveal-photo.jpg",
     giftOneFilmstrip: "/custom-photos/gift1-filmstrip.png",
-    giftOnePhoto1: "/assets/filmstrip-photo1.png",
-    giftOnePhoto2: "/assets/filmstrip-photo2.png",
+    giftOnePhoto1: "/custom-photos/gift1-photo1.png",
+    giftOnePhoto2: "/custom-photos/gift1-photo2.jpg",
     letterFramedPhoto: "/custom-photos/letter-photo.png",
     letterPhotoOnly: "/custom-photos/letter-photo.png",
+    cakePhoto: "/custom-photos/cake-photo.jpg",
     museum: [
-      "/custom-photos/museum-photo-1.png",
-      "/custom-photos/museum-photo-2.png",
-      "/custom-photos/museum-photo-3.png",
-      "/custom-photos/museum-photo-4.png",
-      "/custom-photos/museum-photo-5.png"
+      "/custom-photos/museum-photo-1.jpg",
+      "/custom-photos/museum-photo-2.jpg",
+      "/custom-photos/museum-photo-3.jpg",
+      "/custom-photos/museum-photo-4.jpg"
     ]
   },
 

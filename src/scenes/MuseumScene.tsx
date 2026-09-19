@@ -21,52 +21,51 @@ export const MuseumScene: React.FC<MuseumSceneProps> = ({ onReplay, onBackToGift
     return () => clearTimeout(timer);
   }, []);
 
-  // 5 polaroids positioned with irregular scrapbook placement
+  // 4 polaroids positioned with irregular scrapbook placement
   const polaroids = [
     {
       id: 0,
       src: birthdayConfig.photos.museum[0],
-      rot: -7,
-      pos: 'top-[26%] left-[4%] sm:left-[8%] lg:left-[12%]',
-      w: 'w-44 sm:w-52 lg:w-56',
+      rot: -6,
+      pos: 'top-[20%] left-[3%] sm:left-[7%] lg:left-[10%]',
+      w: 'w-44 sm:w-52 lg:w-58',
+      aspect: 'aspect-[4/5]',
+      objectPos: 'object-[center_35%]',
       delay: 0.2,
-      caption: 'Every moment with you 💕',
+      caption: 'Every mirror selfie with you ✨',
     },
     {
       id: 1,
       src: birthdayConfig.photos.museum[1],
-      rot: -3,
-      pos: 'top-[44%] left-[18%] sm:left-[22%] lg:left-[26%]',
-      w: 'w-44 sm:w-52 lg:w-56',
+      rot: 5,
+      pos: 'top-[44%] left-[20%] sm:left-[25%] lg:left-[28%]',
+      w: 'w-44 sm:w-52 lg:w-58',
+      aspect: 'aspect-[4/5]',
+      objectPos: 'object-[center_35%]',
       delay: 0.4,
-      caption: 'Pure laughter & smiles ✨',
+      caption: 'Pure laughter & sweetest smiles 💕',
     },
     {
       id: 2,
       src: birthdayConfig.photos.museum[2],
-      rot: 2,
-      pos: 'top-[28%] left-[40%] sm:left-[43%] lg:left-[45%]',
-      w: 'w-44 sm:w-52 lg:w-56',
+      rot: -5,
+      pos: 'top-[18%] right-[20%] sm:right-[25%] lg:right-[28%]',
+      w: 'w-44 sm:w-52 lg:w-58',
+      aspect: 'aspect-[4/5]',
+      objectPos: 'object-[center_35%]',
       delay: 0.6,
-      caption: 'My favorite person forever 🥹',
+      caption: 'The coolest duo in the world 😎',
     },
     {
       id: 3,
       src: birthdayConfig.photos.museum[3],
       rot: 6,
-      pos: 'top-[42%] right-[18%] sm:right-[22%] lg:right-[25%]',
-      w: 'w-48 sm:w-56 lg:w-60',
+      pos: 'top-[42%] right-[3%] sm:right-[7%] lg:right-[10%]',
+      w: 'w-48 sm:w-56 lg:w-62',
+      aspect: 'aspect-[4/3]',
+      objectPos: 'object-center',
       delay: 0.8,
-      caption: 'Unforgettable adventures 🌸',
-    },
-    {
-      id: 4,
-      src: birthdayConfig.photos.museum[4],
-      rot: -4,
-      pos: 'top-[24%] right-[4%] sm:right-[8%] lg:right-[10%]',
-      w: 'w-48 sm:w-56 lg:w-60',
-      delay: 1.0,
-      caption: 'To endless more memories 🥂',
+      caption: 'Food dates & endless memories 🍽️❤️',
     },
   ];
 
@@ -143,11 +142,11 @@ export const MuseumScene: React.FC<MuseumSceneProps> = ({ onReplay, onBackToGift
           >
             {/* Polaroid Frame */}
             <div className="p-2 sm:p-2.5 pb-4 sm:pb-5 bg-white rounded-lg shadow-[0_12px_28px_rgba(50,30,85,0.28)] border border-black/5 transition-shadow group-hover:shadow-[0_20px_40px_rgba(50,30,85,0.38)]">
-              <div className="aspect-[4/3] w-full overflow-hidden rounded-md bg-[#FAF5DE]">
+              <div className={`${photo.aspect} w-full overflow-hidden rounded-md bg-[#FAF5DE]`}>
                 <img
                   src={photo.src}
                   alt={`Memory ${photo.id + 1}`}
-                  className="w-full h-full object-cover pointer-events-none transition-transform duration-300 group-hover:scale-105"
+                  className={`w-full h-full object-cover ${photo.objectPos} pointer-events-none transition-transform duration-300 group-hover:scale-105`}
                 />
               </div>
             </div>
@@ -177,19 +176,19 @@ export const MuseumScene: React.FC<MuseumSceneProps> = ({ onReplay, onBackToGift
               animate={{ scale: 1, rotate: 0 }}
               exit={{ scale: 0.8, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-md w-full p-4 pb-6 bg-[#FAF5DE] rounded-2xl shadow-2xl border-4 border-white"
+              className="relative max-w-lg w-full p-4 pb-6 bg-[#FAF5DE] rounded-2xl shadow-2xl border-4 border-white flex flex-col items-center"
             >
               <button
                 onClick={() => setSelectedPhoto(null)}
-                className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#98263A] text-white flex items-center justify-center text-sm font-bold shadow-md cursor-pointer hover:scale-110 transition-transform"
+                className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#98263A] text-white flex items-center justify-center text-sm font-bold shadow-md cursor-pointer hover:scale-110 transition-transform z-10"
               >
                 ✕
               </button>
-              <div className="w-full aspect-[4/3] rounded-lg overflow-hidden shadow-inner mb-4">
+              <div className="w-full max-h-[62vh] flex items-center justify-center rounded-lg overflow-hidden shadow-inner mb-4 bg-black/5">
                 <img
                   src={polaroids[selectedPhoto].src}
                   alt="Expanded memory"
-                  className="w-full h-full object-cover"
+                  className="max-h-[60vh] w-auto max-w-full object-contain rounded-md"
                 />
               </div>
               <p className="font-serif-vintage italic text-xl sm:text-2xl text-[#98263A] text-center font-semibold">

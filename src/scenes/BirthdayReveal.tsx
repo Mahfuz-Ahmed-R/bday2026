@@ -83,7 +83,7 @@ export const BirthdayReveal: React.FC<BirthdayRevealProps> = ({ onNext }) => {
               initial={{ y: -20, rotate: -8 }}
               animate={{ y: 0, rotate: [-8, -4, -8] }}
               transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-              className="absolute -top-16 sm:-top-20 -left-6 sm:-left-8 w-24 sm:w-32 z-20 pointer-events-none drop-shadow-md"
+              className="absolute -top-12 sm:-top-16 -left-4 sm:-left-6 w-20 sm:w-26 z-20 pointer-events-none drop-shadow-md"
             >
               <img
                 src={birthdayConfig.stickers.partyHatYellow || '/assets/party-hat-yellow.png'}
@@ -93,11 +93,11 @@ export const BirthdayReveal: React.FC<BirthdayRevealProps> = ({ onNext }) => {
             </motion.div>
 
             {/* Couple Photo Container */}
-            <div className="relative w-48 sm:w-60 md:w-68 aspect-[4/3] rounded-2xl overflow-hidden shadow-md border-4 border-white">
+            <div className="relative w-44 sm:w-52 md:w-56 aspect-[3/4] rounded-2xl overflow-hidden shadow-md border-4 border-white">
               <img
                 src={birthdayConfig.photos.birthdayCouple}
                 alt="Birthday couple"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
             </div>
           </div>
