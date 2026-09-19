@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-lavender-main: #B9A6DA;
+    --color-lavender-light: #D8C9EF;
+    --color-lavender-dark: #8F75BD;
+    --color-cream-main: #F1EBC7;
+    --color-cream-light: #FBF7E4;
+    --color-cream-card: #FAF6DE;
+    --color-violet-text: #5A479F;
+    --color-rose-text: #98263A;
+    --color-gold: #D3A528;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--color-lavender-main);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom Typography Helpers */
+.font-serif-vintage {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+
+.font-serif-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-script-romantic {
+  font-family: 'Caveat', 'Great Vibes', cursive;
+}
+
+.font-handwritten {
+  font-family: 'Patrick Hand', cursive;
+}
+
+/* Striped Background */
+.bg-striped-pastel {
+  background: repeating-linear-gradient(
+    90deg,
+    #BBA7DB 0px,
+    #BBA7DB 40px,
+    #F4EFCF 40px,
+    #F4EFCF 80px
+  );
+}
+
+/* Paper / Polaroid Shadows */
+.scrapbook-shadow {
+  box-shadow: 0 12px 24px -6px rgba(65, 45, 100, 0.22), 0 4px 10px -2px rgba(65, 45, 100, 0.15);
+}
+
+.scrapbook-shadow-lg {
+  box-shadow: 0 20px 35px -10px rgba(50, 30, 80, 0.28), 0 6px 15px -3px rgba(50, 30, 80, 0.18);
+}
+
+.paper-note-shadow {
+  box-shadow: 3px 6px 16px rgba(45, 25, 75, 0.2);
+}
+
+/* Wavy / Scalloped Borders */
+.scallop-border {
+  border-radius: 28px;
+  position: relative;
+}
+
+/* Custom Scrollbar hide */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
