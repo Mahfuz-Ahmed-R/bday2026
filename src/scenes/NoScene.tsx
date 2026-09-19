@@ -10,7 +10,7 @@ interface NoSceneProps {
 
 export const NoScene: React.FC<NoSceneProps> = ({ onTryAgain }) => {
   return (
-    <div className="relative w-full h-full min-h-screen bg-[#B9A6DA] flex flex-col items-center justify-center p-4 sm:p-6 overflow-hidden select-none">
+    <div className="relative w-full min-h-[100dvh] bg-[#B9A6DA] flex flex-col items-center justify-center p-3 sm:p-6 overflow-y-auto overflow-x-hidden select-none">
       <StarField />
 
       <motion.div
@@ -18,24 +18,24 @@ export const NoScene: React.FC<NoSceneProps> = ({ onTryAgain }) => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative z-10 flex flex-col items-center text-center max-w-xl"
+        className="relative z-10 flex flex-col items-center text-center max-w-sm sm:max-w-xl my-auto py-6"
       >
         {/* Playful Heading */}
         <motion.h2 
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="font-serif-vintage text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-wide drop-shadow-[0_4px_12px_rgba(80,50,130,0.3)] mb-6 sm:mb-8"
+          className="font-serif-vintage text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-wide drop-shadow-[0_4px_12px_rgba(80,50,130,0.3)] mb-4 sm:mb-8"
         >
           {birthdayConfig.noResponse.heading}
         </motion.h2>
 
         {/* TRY AGAIN Button with pixel cursor */}
-        <div className="relative mb-8 sm:mb-10">
+        <div className="relative mb-6 sm:mb-10">
           <HandDrawnButton
             variant="pill"
             onClick={onTryAgain}
-            className="text-2xl sm:text-3xl py-3 px-10 text-[#715AC3] bg-white shadow-lg"
+            className="text-xl sm:text-3xl py-2.5 sm:py-3 px-6 sm:px-10 text-[#715AC3] bg-white shadow-lg touch-manipulation"
           >
             {birthdayConfig.noResponse.buttonText}
           </HandDrawnButton>
@@ -57,7 +57,7 @@ export const NoScene: React.FC<NoSceneProps> = ({ onTryAgain }) => {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="w-64 sm:w-80 md:w-96 select-none drop-shadow-[0_12px_24px_rgba(70,40,110,0.25)]"
+          className="w-48 sm:w-72 md:w-88 select-none drop-shadow-[0_12px_24px_rgba(70,40,110,0.25)]"
         >
           <img
             src={birthdayConfig.stickers.bubuDuduCuddle}

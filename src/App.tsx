@@ -67,7 +67,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="relative w-screen h-[100dvh] overflow-hidden bg-[#B9A6DA] text-[#4A3B69] select-none font-sans">
+    <div className="relative w-full min-h-[100dvh] bg-[#B9A6DA] text-[#4A3B69] select-none font-sans overflow-x-hidden">
       <BackgroundMusic />
       <AnimatePresence mode="wait">
         <motion.div
@@ -76,7 +76,7 @@ export const App: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.45, ease: 'easeInOut' }}
-          className="w-full h-full"
+          className="w-full min-h-[100dvh] flex flex-col"
         >
           {currentScene === 'unlock' && (
             <UnlockScene 

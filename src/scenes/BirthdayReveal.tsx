@@ -35,9 +35,9 @@ export const BirthdayReveal: React.FC<BirthdayRevealProps> = ({ onNext }) => {
   ];
 
   return (
-    <div className="relative w-full h-full min-h-screen bg-striped-pastel flex items-center justify-center p-3 sm:p-6 overflow-hidden select-none">
+    <div className="relative w-full min-h-[100dvh] bg-striped-pastel flex items-center justify-center p-3 sm:p-6 overflow-y-auto overflow-x-hidden select-none">
       {/* Top Red Birthday Bunting Banner */}
-      <div className="absolute top-0 inset-x-0 h-14 sm:h-16 flex justify-between items-start pointer-events-none z-20 overflow-hidden">
+      <div className="absolute top-0 inset-x-0 h-10 sm:h-14 md:h-16 flex justify-between items-start pointer-events-none z-20 overflow-hidden">
         {/* String curve with hanging triangular flags */}
         <svg viewBox="0 0 1200 80" preserveAspectRatio="none" className="w-full h-full text-[#98263A] drop-shadow-sm">
           {/* Hanging string */}
@@ -67,23 +67,23 @@ export const BirthdayReveal: React.FC<BirthdayRevealProps> = ({ onNext }) => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
-        className="relative z-10 w-full max-w-4xl flex items-center justify-center my-auto"
+        className="relative z-10 w-full max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-4xl flex items-center justify-center my-auto py-8 sm:py-10"
       >
         {/* Central Cream Card with thick purple wavy border */}
         <div 
-          className="relative w-full bg-[#FAF5DE] rounded-[42px] p-6 sm:p-10 shadow-[0_20px_45px_rgba(70,45,110,0.22)] border-[4px] border-[#7C66B9] flex flex-col items-center justify-center min-h-[460px] sm:min-h-[500px]"
+          className="relative w-full bg-[#FAF5DE] rounded-[30px] sm:rounded-[40px] p-4 sm:p-8 md:p-10 shadow-[0_20px_45px_rgba(70,45,110,0.22)] border-[3px] sm:border-[4px] border-[#7C66B9] flex flex-col items-center justify-center"
           style={{
             boxShadow: '0 20px 45px rgba(70,45,110,0.2), inset 0 0 0 2px rgba(255,255,255,0.7)',
           }}
         >
           {/* CENTER: Couple Photo with Party Hat */}
-          <div className="relative my-auto flex flex-col items-center">
+          <div className="relative my-2 sm:my-3 flex flex-col items-center">
             {/* The Party Hat placed over the couple */}
             <motion.div
               initial={{ y: -20, rotate: -8 }}
               animate={{ y: 0, rotate: [-8, -4, -8] }}
               transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-              className="absolute -top-12 sm:-top-16 -left-4 sm:-left-6 w-20 sm:w-26 z-20 pointer-events-none drop-shadow-md"
+              className="absolute -top-8 sm:-top-14 -left-3 sm:-left-6 w-14 sm:w-22 md:w-26 z-20 pointer-events-none drop-shadow-md"
             >
               <img
                 src={birthdayConfig.stickers.partyHatYellow || '/assets/party-hat-yellow.png'}
@@ -93,7 +93,7 @@ export const BirthdayReveal: React.FC<BirthdayRevealProps> = ({ onNext }) => {
             </motion.div>
 
             {/* Couple Photo Container */}
-            <div className="relative w-44 sm:w-52 md:w-56 aspect-[3/4] rounded-2xl overflow-hidden shadow-md border-4 border-white">
+            <div className="relative w-36 sm:w-48 md:w-56 aspect-[3/4] rounded-2xl overflow-hidden shadow-md border-3 sm:border-4 border-white">
               <img
                 src={birthdayConfig.photos.birthdayCouple}
                 alt="Birthday couple"
@@ -103,12 +103,12 @@ export const BirthdayReveal: React.FC<BirthdayRevealProps> = ({ onNext }) => {
           </div>
 
           {/* BOTTOM: Ransom / Cut-paper HAPPY BIRTHDAY */}
-          <div className="relative mt-5 sm:mt-7 flex flex-col items-center gap-1.5 z-20">
+          <div className="relative mt-3 sm:mt-6 flex flex-col items-center gap-1 sm:gap-1.5 z-20">
             {/* Golden decorative stars on sides */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="text-xl sm:text-2xl text-[#D3A528] animate-bounce">★</span>
+            <div className="flex items-center gap-1.5 sm:gap-3">
+              <span className="text-base sm:text-xl md:text-2xl text-[#D3A528] animate-bounce">★</span>
               {/* HAPPY */}
-              <div className="flex items-center gap-1 sm:gap-1.5">
+              <div className="flex items-center gap-0.5 sm:gap-1.5">
                 {ransomHappy.map((l, i) => (
                   <motion.div
                     key={i}
@@ -118,17 +118,17 @@ export const BirthdayReveal: React.FC<BirthdayRevealProps> = ({ onNext }) => {
                       color: l.text,
                       transform: `rotate(${l.rot}deg)`,
                     }}
-                    className="w-7 h-9 sm:w-9 sm:h-11 flex items-center justify-center font-serif-display font-black text-xl sm:text-2xl rounded-sm shadow-md border border-black/10 select-none"
+                    className="w-6 h-7 sm:w-8 sm:h-10 md:w-9 md:h-11 flex items-center justify-center font-serif-display font-black text-base sm:text-xl md:text-2xl rounded-sm shadow-sm sm:shadow-md border border-black/10 select-none"
                   >
                     {l.char}
                   </motion.div>
                 ))}
               </div>
-              <span className="text-xl sm:text-2xl text-[#D3A528] animate-bounce" style={{ animationDelay: '0.5s' }}>★</span>
+              <span className="text-base sm:text-xl md:text-2xl text-[#D3A528] animate-bounce" style={{ animationDelay: '0.5s' }}>★</span>
             </div>
 
             {/* BIRTHDAY */}
-            <div className="flex items-center gap-1 sm:gap-1.5 mt-0.5">
+            <div className="flex items-center gap-0.5 sm:gap-1.5 mt-0.5">
               {ransomBirthday.map((l, i) => (
                 <motion.div
                   key={i}
@@ -138,23 +138,34 @@ export const BirthdayReveal: React.FC<BirthdayRevealProps> = ({ onNext }) => {
                     color: l.text,
                     transform: `rotate(${l.rot}deg)`,
                   }}
-                  className="w-6 h-8 sm:w-8 sm:h-10 flex items-center justify-center font-serif-display font-bold text-lg sm:text-xl rounded-sm shadow-md border border-black/10 select-none"
+                  className="w-5 h-6 sm:w-7 sm:h-9 md:w-8 md:h-10 flex items-center justify-center font-serif-display font-bold text-xs sm:text-base md:text-xl rounded-sm shadow-sm sm:shadow-md border border-black/10 select-none"
                 >
                   {l.char}
                 </motion.div>
               ))}
             </div>
           </div>
+
+          {/* NEXT BUTTON: Embedded cleanly at bottom */}
+          <div className="mt-5 sm:mt-6 flex justify-end w-full pr-1 sm:pr-4">
+            <HandDrawnButton
+              variant="underline"
+              onClick={onNext}
+              className="text-2xl sm:text-3xl md:text-4xl text-[#715AC3] font-serif-vintage hover:text-[#5A43AE] touch-manipulation"
+            >
+              {birthdayConfig.birthdayReveal.nextText} &rarr;
+            </HandDrawnButton>
+          </div>
         </div>
 
-        {/* LEFT DECORATION: Balloons & Halftone Cat Paw */}
+        {/* LEFT DECORATION: Balloons (responsive positioning) */}
         <motion.div
           initial={{ opacity: 0, x: -25 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="absolute -left-6 sm:-left-12 lg:-left-20 bottom-0 pointer-events-none z-30 select-none"
+          className="absolute -left-3 sm:-left-10 lg:-left-16 bottom-2 pointer-events-none z-30 select-none hidden sm:block"
         >
-          <div className="w-32 sm:w-44 lg:w-52 drop-shadow-[0_8px_16px_rgba(60,35,100,0.25)]">
+          <div className="w-24 sm:w-36 lg:w-48 drop-shadow-[0_8px_16px_rgba(60,35,100,0.25)]">
             <img
               src={birthdayConfig.stickers.catPawBalloons}
               alt="Cat holding balloons"
@@ -163,14 +174,14 @@ export const BirthdayReveal: React.FC<BirthdayRevealProps> = ({ onNext }) => {
           </div>
         </motion.div>
 
-        {/* RIGHT DECORATION: Disco Ball, Star & Right Cat Paw */}
+        {/* RIGHT DECORATION: Disco Ball (responsive positioning) */}
         <motion.div
           initial={{ opacity: 0, x: 25 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="absolute -right-4 sm:-right-10 lg:-right-16 top-4 sm:top-6 pointer-events-none z-30 select-none"
+          className="absolute -right-2 sm:-right-8 lg:-right-14 top-2 sm:top-6 pointer-events-none z-30 select-none hidden sm:block"
         >
-          <div className="w-36 sm:w-48 lg:w-56 drop-shadow-[0_10px_20px_rgba(60,35,100,0.25)]">
+          <div className="w-24 sm:w-40 lg:w-52 drop-shadow-[0_10px_20px_rgba(60,35,100,0.25)]">
             <img
               src={birthdayConfig.stickers.discoBall}
               alt="Disco ball"
@@ -178,33 +189,6 @@ export const BirthdayReveal: React.FC<BirthdayRevealProps> = ({ onNext }) => {
             />
           </div>
         </motion.div>
-
-        {/* BOTTOM RIGHT: Cat Paw wearing mini hat */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="absolute -right-3 sm:-right-8 bottom-0 pointer-events-none z-30 select-none hidden sm:block"
-        >
-          <div className="w-24 sm:w-32 drop-shadow-md">
-            <img
-              src={birthdayConfig.stickers.catPawRight}
-              alt="Party cat paw"
-              className="w-full h-auto object-contain"
-            />
-          </div>
-        </motion.div>
-
-        {/* NAVIGATION: 'next' button on right */}
-        <div className="absolute right-4 sm:right-10 bottom-16 sm:bottom-20 z-30">
-          <HandDrawnButton
-            variant="underline"
-            onClick={onNext}
-            className="text-3xl sm:text-4xl text-[#715AC3] font-serif-vintage hover:text-[#5A43AE]"
-          >
-            {birthdayConfig.birthdayReveal.nextText}
-          </HandDrawnButton>
-        </div>
 
       </motion.div>
     </div>

@@ -70,16 +70,16 @@ export const MuseumScene: React.FC<MuseumSceneProps> = ({ onReplay, onBackToGift
   ];
 
   return (
-    <div className="relative w-full h-full min-h-screen bg-[#B9A6DA] flex flex-col items-center justify-between p-4 sm:p-6 overflow-hidden select-none">
+    <div className="relative w-full min-h-[100dvh] bg-[#B9A6DA] flex flex-col items-center justify-between p-3 sm:p-6 overflow-y-auto overflow-x-hidden select-none">
       <StarField />
 
-      {/* TOP NAVIGATION / ACTIONS */}
-      <div className="relative z-30 w-full max-w-6xl flex items-center justify-between pt-2 px-2">
-        <HandDrawnButton variant="back" onClick={onBackToGifts}>
+      {/* TOP NAVIGATION / ACTIONS: Aligned right away from top-left music player */}
+      <div className="relative z-30 w-full max-w-6xl flex items-center justify-end gap-2 sm:gap-3 pt-1 sm:pt-2 px-1 sm:px-2">
+        <HandDrawnButton variant="back" onClick={onBackToGifts} className="text-xs sm:text-base px-3 py-1 sm:px-4 sm:py-1.5 touch-manipulation">
           gifts
         </HandDrawnButton>
 
-        <HandDrawnButton variant="back" onClick={onReplay}>
+        <HandDrawnButton variant="back" onClick={onReplay} className="text-xs sm:text-base px-3 py-1 sm:px-4 sm:py-1.5 touch-manipulation">
           replay ↺
         </HandDrawnButton>
       </div>
@@ -89,12 +89,12 @@ export const MuseumScene: React.FC<MuseumSceneProps> = ({ onReplay, onBackToGift
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative z-20 flex items-baseline justify-center gap-3 sm:gap-4 mt-2 sm:mt-4 select-none"
+        className="relative z-20 flex items-baseline justify-center gap-2 sm:gap-4 mt-2 sm:mt-4 select-none text-center"
       >
-        <span className="font-script-romantic italic text-6xl sm:text-7xl lg:text-8xl text-white drop-shadow-[0_4px_10px_rgba(80,50,130,0.3)]">
+        <span className="font-script-romantic italic text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white drop-shadow-[0_4px_10px_rgba(80,50,130,0.3)]">
           {birthdayConfig.museumScene.titlePrefix}
         </span>
-        <span className="font-serif-display font-bold text-5xl sm:text-6xl lg:text-7xl text-[#98263A] tracking-tight drop-shadow-[0_4px_10px_rgba(80,50,130,0.3)]">
+        <span className="font-serif-display font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[#98263A] tracking-tight drop-shadow-[0_4px_10px_rgba(80,50,130,0.3)]">
           {birthdayConfig.museumScene.titleSuffix}
         </span>
       </motion.div>
@@ -104,7 +104,7 @@ export const MuseumScene: React.FC<MuseumSceneProps> = ({ onReplay, onBackToGift
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.7 }}
-        className="absolute top-[20%] left-[49%] -translate-x-1/2 z-25 w-14 sm:w-16 pointer-events-none drop-shadow-md"
+        className="relative sm:absolute sm:top-[20%] sm:left-[49%] sm:-translate-x-1/2 z-25 w-10 sm:w-16 pointer-events-none drop-shadow-md my-1 sm:my-0"
       >
         <img
           src={birthdayConfig.stickers.envelopeHeart}
@@ -113,11 +113,47 @@ export const MuseumScene: React.FC<MuseumSceneProps> = ({ onReplay, onBackToGift
         />
       </motion.div>
 
-      {/* MAIN SCRAPBOOK PHOTO AREA */}
-      <div className="relative z-20 w-full max-w-6xl flex-1 min-h-[480px] sm:min-h-[520px] my-auto">
+      {/* MOBILE SCRAPBOOK GRID (< md) */}
+      <div className="md:hidden relative z-20 w-full max-w-md grid grid-cols-2 gap-3.5 sm:gap-5 my-4 px-2">
         {polaroids.map((photo) => (
           <motion.div
-            key={photo.id}
+            key={`mobile-${photo.id}`}
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              y: 0,
+              rotate: photo.rot
+            }}
+            transition={{ 
+              duration: 0.6, 
+              delay: photo.delay * 0.7,
+              ease: 'easeOut'
+            }}
+            whileHover={{ scale: 1.05, rotate: 0 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={() => setSelectedPhoto(photo.id)}
+            className="w-full cursor-pointer group select-none touch-manipulation"
+          >
+            {/* Polaroid Frame */}
+            <div className="p-2 pb-3 bg-white rounded-lg shadow-[0_8px_20px_rgba(50,30,85,0.22)] border border-black/5">
+              <div className={`${photo.aspect} w-full overflow-hidden rounded-md bg-[#FAF5DE]`}>
+                <img
+                  src={photo.src}
+                  alt={`Memory ${photo.id + 1}`}
+                  className={`w-full h-full object-cover ${photo.objectPos} pointer-events-none`}
+                />
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* DESKTOP SCRAPBOOK SPREAD (>= md) */}
+      <div className="hidden md:block relative z-20 w-full max-w-6xl flex-1 min-h-[480px] sm:min-h-[520px] my-auto">
+        {polaroids.map((photo) => (
+          <motion.div
+            key={`desktop-${photo.id}`}
             initial={{ opacity: 0, scale: 0.7, y: 30 }}
             animate={{ 
               opacity: 1, 
@@ -155,8 +191,8 @@ export const MuseumScene: React.FC<MuseumSceneProps> = ({ onReplay, onBackToGift
       </div>
 
       {/* BOTTOM HINT */}
-      <div className="relative z-20 pb-4 text-center">
-        <p className="font-handwritten text-lg sm:text-xl text-white/90 drop-shadow-sm">
+      <div className="relative z-20 pb-3 sm:pb-4 text-center">
+        <p className="font-handwritten text-base sm:text-xl text-white/90 drop-shadow-sm">
           tap any photo to cherish the memory 💜
         </p>
       </div>
@@ -169,29 +205,29 @@ export const MuseumScene: React.FC<MuseumSceneProps> = ({ onReplay, onBackToGift
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedPhoto(null)}
-            className="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer"
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 cursor-pointer"
           >
             <motion.div
               initial={{ scale: 0.8, rotate: -3 }}
               animate={{ scale: 1, rotate: 0 }}
               exit={{ scale: 0.8, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-lg w-full p-4 pb-6 bg-[#FAF5DE] rounded-2xl shadow-2xl border-4 border-white flex flex-col items-center"
+              className="relative max-w-sm sm:max-w-md md:max-w-lg w-full p-3 sm:p-4 pb-4 sm:pb-6 bg-[#FAF5DE] rounded-2xl shadow-2xl border-2 sm:border-4 border-white flex flex-col items-center"
             >
               <button
                 onClick={() => setSelectedPhoto(null)}
-                className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#98263A] text-white flex items-center justify-center text-sm font-bold shadow-md cursor-pointer hover:scale-110 transition-transform z-10"
+                className="absolute -top-2.5 -right-2.5 sm:-top-3 sm:-right-3 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#98263A] text-white flex items-center justify-center text-xs sm:text-sm font-bold shadow-md cursor-pointer hover:scale-110 active:scale-95 transition-transform z-10"
               >
                 ✕
               </button>
-              <div className="w-full max-h-[62vh] flex items-center justify-center rounded-lg overflow-hidden shadow-inner mb-4 bg-black/5">
+              <div className="w-full max-h-[55vh] sm:max-h-[62vh] flex items-center justify-center rounded-lg overflow-hidden shadow-inner mb-3 sm:mb-4 bg-black/5">
                 <img
                   src={polaroids[selectedPhoto].src}
                   alt="Expanded memory"
-                  className="max-h-[60vh] w-auto max-w-full object-contain rounded-md"
+                  className="max-h-[52vh] sm:max-h-[60vh] w-auto max-w-full object-contain rounded-md"
                 />
               </div>
-              <p className="font-serif-vintage italic text-xl sm:text-2xl text-[#98263A] text-center font-semibold">
+              <p className="font-serif-vintage italic text-lg sm:text-2xl text-[#98263A] text-center font-semibold">
                 {polaroids[selectedPhoto].caption}
               </p>
             </motion.div>

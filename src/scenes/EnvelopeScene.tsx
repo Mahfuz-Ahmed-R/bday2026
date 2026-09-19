@@ -22,14 +22,14 @@ export const EnvelopeScene: React.FC<EnvelopeSceneProps> = ({ onEnvelopeOpened }
   };
 
   return (
-    <div className="relative w-full h-full min-h-screen bg-[#B9A6DA] flex items-center justify-center p-4 sm:p-6 overflow-hidden select-none">
+    <div className="relative w-full min-h-[100dvh] bg-[#B9A6DA] flex items-center justify-center p-3 sm:p-6 overflow-y-auto overflow-x-hidden select-none">
       <StarField />
 
       {/* Floating gentle heart icon */}
       <motion.div
         animate={{ y: [-5, 5, -5], scale: [1, 1.08, 1] }}
         transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
-        className="absolute top-12 sm:top-16 text-3xl sm:text-4xl text-[#98263A] drop-shadow-sm select-none"
+        className="absolute top-6 sm:top-12 md:top-16 text-2xl sm:text-3xl md:text-4xl text-[#98263A] drop-shadow-sm select-none"
       >
         💌
       </motion.div>
@@ -37,16 +37,16 @@ export const EnvelopeScene: React.FC<EnvelopeSceneProps> = ({ onEnvelopeOpened }
       {/* Main Envelope Container */}
       <div 
         onClick={handleOpenEnvelope}
-        className="relative z-10 w-full max-w-lg cursor-pointer group select-none"
+        className="relative z-10 w-full max-w-[310px] sm:max-w-md md:max-w-lg cursor-pointer group select-none my-auto py-6 touch-manipulation"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="relative w-full aspect-[1.4/1] bg-[#FAF5DE] rounded-2xl shadow-[0_22px_45px_rgba(65,40,110,0.28)] border-2 border-[#EADFB7] flex items-center justify-center overflow-visible"
+          className="relative w-full aspect-[1.4/1] bg-[#FAF5DE] rounded-xl sm:rounded-2xl shadow-[0_22px_45px_rgba(65,40,110,0.28)] border-2 border-[#EADFB7] flex items-center justify-center overflow-visible"
         >
           {/* Envelope Bottom Pocket Folds (SVG) */}
-          <div className="absolute inset-0 z-10 pointer-events-none rounded-2xl overflow-hidden">
+          <div className="absolute inset-0 z-10 pointer-events-none rounded-xl sm:rounded-2xl overflow-hidden">
             {/* Left triangle */}
             <svg viewBox="0 0 400 280" preserveAspectRatio="none" className="w-full h-full">
               <polygon points="0,0 200,160 0,280" fill="#F4EBC8" opacity="0.6" />
@@ -59,14 +59,14 @@ export const EnvelopeScene: React.FC<EnvelopeSceneProps> = ({ onEnvelopeOpened }
           {/* Letter Card Peeking out during open */}
           <motion.div
             initial={{ y: 0, opacity: 0 }}
-            animate={isOpen ? { y: -80, opacity: 1 } : { y: 0, opacity: 0 }}
+            animate={isOpen ? { y: -60, opacity: 1 } : { y: 0, opacity: 0 }}
             transition={{ duration: 0.9, ease: 'easeOut' }}
-            className="absolute z-15 w-[84%] h-[75%] bg-white rounded-xl shadow-md border border-[#D5C6F0] p-4 flex flex-col items-center justify-center text-center"
+            className="absolute z-15 w-[84%] h-[75%] bg-white rounded-lg sm:rounded-xl shadow-md border border-[#D5C6F0] p-3 sm:p-4 flex flex-col items-center justify-center text-center"
           >
-            <p className="font-serif-vintage text-lg sm:text-xl text-[#715AC3] font-bold">
+            <p className="font-serif-vintage text-base sm:text-xl text-[#715AC3] font-bold">
               Happy Birthday! ❤️
             </p>
-            <p className="font-handwritten text-sm text-[#98263A] mt-1">
+            <p className="font-handwritten text-xs sm:text-sm text-[#98263A] mt-0.5 sm:mt-1">
               To my favourite person...
             </p>
           </motion.div>
@@ -89,10 +89,10 @@ export const EnvelopeScene: React.FC<EnvelopeSceneProps> = ({ onEnvelopeOpened }
             initial={{ scale: 1 }}
             animate={isOpen ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="absolute z-30 top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#B68516] via-[#E4B63E] to-[#F7DE7C] shadow-[0_6px_16px_rgba(140,90,10,0.4)] flex items-center justify-center border-2 border-[#DDAF35] group-hover:scale-110 transition-transform"
+            className="absolute z-30 top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#B68516] via-[#E4B63E] to-[#F7DE7C] shadow-[0_6px_16px_rgba(140,90,10,0.4)] flex items-center justify-center border-2 border-[#DDAF35] group-hover:scale-110 active:scale-95 transition-transform"
           >
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-dashed border-[#845E0B]/50 flex items-center justify-center bg-[#DDAF35]/30">
-              <span className="text-xl sm:text-2xl text-[#98263A] drop-shadow-sm animate-pulse">
+            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full border-2 border-dashed border-[#845E0B]/50 flex items-center justify-center bg-[#DDAF35]/30">
+              <span className="text-lg sm:text-2xl text-[#98263A] drop-shadow-sm animate-pulse">
                 ❤️
               </span>
             </div>
@@ -104,7 +104,7 @@ export const EnvelopeScene: React.FC<EnvelopeSceneProps> = ({ onEnvelopeOpened }
         <motion.p
           animate={{ opacity: [0.6, 1, 0.6] }}
           transition={{ repeat: Infinity, duration: 2 }}
-          className="text-center font-handwritten text-xl text-white mt-5 drop-shadow-sm"
+          className="text-center font-handwritten text-lg sm:text-xl text-white mt-4 sm:mt-5 drop-shadow-sm"
         >
           {!isOpen ? "tap the wax seal to open 💌" : "opening love letter..."}
         </motion.p>
